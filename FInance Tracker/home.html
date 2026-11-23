@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Dashboard</h2>  
+
+    <button onclick="showSection('dashboard')">Home</button>
+    <button onclick="showSection('expense')">Expense</button>
+    <button onclick="showSection('income')">Income</button>
+    <button onclick="showSection('budget')">Budget</button>
+    <button onclick="showSection('history')">History</button>
+
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div class="main">
+
+<h2>Welcome Finance Tracker</h2>
+
+<div id="dashboard">
+    <div class="card">Income: ₹<span id="totalIncome">0</span></div>
+    <div class="card">Expense: ₹<span id="totalExpense">0</span></div>
+    <div class="card">Savings: ₹<span id="savings">0</span></div>
+    <div id="budgetList"></div>
+</div>
+
+
+<div id="expense" class="hidden">
+    <h3>Expense</h3>
+
+    <input id="expAmount" placeholder="Amount">
+    <input id="expCategory" placeholder="Category">
+    <input id="expDate" type="date">
+    <input id="expDesc" placeholder="Description">
+
+    <button onclick="saveExpense()">Add Expense</button>
+
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="expenseTable"></tbody>
+</table>
+</div>
+
+
+<div id="income" class="hidden">
+    <h3>Income</h3>
+
+    <input id="incAmount" placeholder="Amount">
+    <input id="incSource" placeholder="Source">
+    <select id="incFreq">
+        <option>Monthly</option>
+        <option>Weekly</option>
+    </select>
+    <input id="incDate" type="date">
+    <input id="incDesc" placeholder="Description">
+
+    <button onclick="saveIncome()">Add Income</button>
+
+    <table border="1">
+        <tbody id="incomeTable"></tbody>
+    </table>
+</div>
+
+
+<div id="budget" class="hidden">
+    <h3>Budget</h3>
+
+    <input id="budgetCategory" placeholder="Category">
+    <input id="budgetMonth" placeholder="Month">
+    <input id="budgetAmount" placeholder="Amount">
+
+    <button onclick="saveBudget()">Save Budget</button>
+</div>
+
+
+<div id="history" class="hidden">
+    <h3>History</h3>
+
+   
+    <input id="searchInput" placeholder="Search..." onkeyup="searchHistory()">
+
+   
+    <select onchange="filterHistory(this.value)">
+        <option value="all">All</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
+
+    <select onchange="sortHistory(this.value)">
+        <option value="latest">Latest</option>
+        <option value="oldest">Oldest</option>
+    </select>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody id="historyTable"></tbody>
+    </table>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
